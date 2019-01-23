@@ -1,0 +1,15 @@
+---
+version: 0.2
+phases:
+  build:
+    commands:
+      - "export version=2.20.1"
+      - "cd ${CODEBUILD_SRC_DIR}"
+      - chmod a+x build_git.sh
+      - ./build_git.sh "${Version}"
+      - |
+        cd "/u/git-${Version}" &&
+          zip_file="${CODEBUILD_SRC_DIR}/git-${Version}.zip" \
+          && zip -q -r -m "${zip_file}" . \
+          && aws s3 --quiet cp "${zip_file}" s3://${Bucket}/
+artifacts: {}
