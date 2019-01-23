@@ -3,8 +3,8 @@ version=${1:-"2.20.1"}
 apt-get -qq update
 apt-get -qq install software-properties-common
 apt-get -qq install dh-autoreconf libcurl4-openssl-dev libexpat1-dev gettext \
-  libz-dev libssl-dev python python-pip
-yum -y -q install asciidoc xmlto docbook2X autoconf
+  libz-dev libssl-dev python python-pip wget gcc make
+apt-get -y -q install asciidoc xmlto docbook2X autoconf
 pip install -q awscli
 mkdir -p /u/downloads
 version=${1:-"2.20.1"}
